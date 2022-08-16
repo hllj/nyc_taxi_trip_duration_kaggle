@@ -1,3 +1,5 @@
 dataset/*
 submissons/*
 .ipynb_checkpoints/*
+outputs/*
+__pycache__

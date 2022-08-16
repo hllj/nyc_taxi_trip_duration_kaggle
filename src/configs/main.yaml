@@ -1,0 +1,7 @@
+defaults:
+  - process: baseline
+  - model: baseline
+
+submission_folder: 'submissons'
+print_config: True
+seed: 34 
