@@ -1,0 +1,37 @@
+target_column : 'trip_duration'
+categorical_column : ['vendor_id', 'store_and_fwd_flag', 'day_of_week', 'hour_of_day', 'month']
+numerical_column : ['passenger_count', 'distance']
+
+names: [
+  'Linear_Regression',
+  'Ridge_Regression',
+  'RidgeCV_Regression',
+  'SGD_Regressor',
+  'Lasso_Regression',
+  'LassoCV_Regression',
+  'LinearSVR',
+  'NuSVR',
+  'SVR'
+]
+models: [
+  sklearn.linear_model.LinearRegression,
+  sklearn.linear_model.Ridge,
+  sklearn.linear_model.RidgeCV,
+  sklearn.linear_model.SGDRegressor,
+  sklearn.linear_model.Lasso,
+  sklearn.linear_model.LassoCV,
+  sklearn.svm.LinearSVR,
+  sklearn.svm.NuSVR,
+  sklearn.svm.SVR
+]
+encoding: True
+scaler:
+  _target_: sklearn.preprocessing.MinMaxScaler
+
+cv:
+  _target_: sklearn.model_selection.KFold
+  n_splits: 5
+  shuffle: True
+  random_state: 34
+
+output: 'model_selection_linear.csv'

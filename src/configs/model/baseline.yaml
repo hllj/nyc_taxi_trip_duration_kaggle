@@ -8,4 +8,4 @@ model:
 
 encoding: True
 scaler:
-  _target_: sklearn.preprocessing.StandardScaler
+  _target_: sklearn.preprocessing.MinMaxScaler
