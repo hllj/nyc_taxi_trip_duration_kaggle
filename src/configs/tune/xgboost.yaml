@@ -5,8 +5,7 @@ numerical_column : ['passenger_count', 'distance']
 
 n_trials: 5
 
-model:
-  _target_: xgboost.XGBRegressor
+model: xgboost.XGBRegressor
 
 cv:
   _target_: sklearn.model_selection.KFold

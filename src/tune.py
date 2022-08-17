@@ -41,7 +41,7 @@ def objective(trial, X, Y, cfg):
             'min_child_weight', 1, 300
         ),
     }
-    model = hydra.utils.instantiate({'_target_': cfg['tune']['model']})(**param)
+    model = hydra.utils.instantiate({'_target_': cfg['tune']['model']}, **param)
     cv = hydra.utils.instantiate(cfg['model_select']['cv'])
     
     error = cross_val_score(model, X, Y, cv=cv, scoring=val).mean()
