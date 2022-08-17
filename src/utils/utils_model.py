@@ -32,5 +32,5 @@ def get_feature(df, columns):
 def get_pred(X_test, model):
     Y_test_pred = model.predict(X_test)
     # get inverse log with exp
-    Y_test_pred = np.exp(Y_test_pred)
+    Y_test_pred = np.exp(Y_test_pred) - 1
     return Y_test_pred

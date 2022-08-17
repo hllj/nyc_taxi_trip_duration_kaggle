@@ -14,7 +14,7 @@ def clean_data(df_train, df_test):
     return df_train, df_test
     
 def transform(df_train, df_test):
-    df_train['trip_duration'] = np.log(df_train['trip_duration'])
+    df_train['trip_duration'] = np.log(df_train['trip_duration'] + 1)
     return df_train, df_test
 
 def feature_engineer(df_train, df_test):
