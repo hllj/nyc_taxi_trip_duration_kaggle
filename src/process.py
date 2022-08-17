@@ -1,4 +1,4 @@
-from distutils.command.clean import clean
+import logging
 import pandas as pd
 import numpy as np
 from omegaconf import DictConfig, OmegaConf
@@ -6,6 +6,7 @@ import hydra
 
 from utils.utils import haversine
 
+log = logging.getLogger(__name__)
 
 def clean_data(df_train, df_test):
     df_train.drop('id',inplace=True,axis=1)
@@ -66,10 +67,15 @@ def save_process_data(cfg, df_train, df_test):
 @hydra.main(version_base=None, config_path="configs", config_name="main")
 def process_data(cfg : DictConfig) -> None:
     df_train, df_test = read_raw_data(cfg)
+    log.info("Read raw data")
     df_train, df_test = clean_data(df_train, df_test)
+    log.info("Clean data")
     df_train, df_test = transform(df_train, df_test)
+    log.info("Transform Data")
     df_train, df_test = feature_engineer(df_train, df_test)
+    log.info("Feature Engineer")
     save_process_data(cfg, df_train, df_test)
+    log.info(f"Save process in {cfg['process']}")
 
 if __name__ == "__main__":
     process_data()
