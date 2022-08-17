@@ -1,0 +1,31 @@
+target_column : 'trip_duration'
+categorical_column : ['vendor_id', 'store_and_fwd_flag', 'day_of_week', 'hour_of_day', 'month']
+numerical_column : ['passenger_count', 'distance']
+
+names: [
+  'DecisionTree_Regression',
+  'RandomForest_Regression',
+  'GradientBoosting_Regression',
+  'AdaBoost_Regression',
+  'LightGBM_Regression',
+  'XGBoost_Regression'
+]
+models: [
+  sklearn.tree.DecisionTreeRegressor,
+  sklearn.ensemble.RandomForestRegressor,
+  sklearn.ensemble.GradientBoostingRegressor,
+  sklearn.ensemble.AdaBoostRegressor,
+  lightgbm.LGBMRegressor,
+  xgboost.XGBRegressor
+]
+encoding: False
+scaler:
+  _target_: sklearn.preprocessing.MinMaxScaler
+
+cv:
+  _target_: sklearn.model_selection.KFold
+  n_splits: 5
+  shuffle: True
+  random_state: 34
+
+output: 'model_selection_tree.csv'

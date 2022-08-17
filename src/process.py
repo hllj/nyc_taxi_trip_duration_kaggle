@@ -4,7 +4,8 @@ import numpy as np
 from omegaconf import DictConfig, OmegaConf
 import hydra
 
-from utils import haversine
+from utils.utils import haversine
+
 
 def clean_data(df_train, df_test):
     df_train.drop('id',inplace=True,axis=1)
