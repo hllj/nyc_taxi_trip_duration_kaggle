@@ -5,6 +5,7 @@ import pandas as pd
 from sklearn.model_selection import cross_val_score
 from xgboost import XGBRegressor
 import optuna
+from optuna.samplers import TPESampler
 
 from utils.utils_model import get_feature, get_target, val
 
@@ -68,11 +69,13 @@ def tune(cfg: DictConfig) -> None:
     
     cv = hydra.utils.instantiate(cfg['tune']['cv'])
     
-    study = optuna.create_study(direction='minimize')
+    study = optuna.create_study(
+        direction='minimize',
+        sampler=TPESampler()
+    )
     study.optimize(
         lambda trial: objective(trial, X_train, Y_train, cfg),
         n_trials=cfg['tune']['n_trials'],
-        n_jobs=-1
     )
     log.info(f'Number of finished trials: {len(study.trials)}')
     log.info(f'Best trial: {study.best_trial.params}')
