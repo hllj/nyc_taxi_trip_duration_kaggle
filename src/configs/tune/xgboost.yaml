@@ -8,6 +8,12 @@ n_trials: 5
 model:
   _target_: xgboost.XGBRegressor
 
+cv:
+  _target_: sklearn.model_selection.KFold
+  n_splits: 5
+  shuffle: True
+  random_state: 34
+
 encoding: False
 scaler:
   _target_: sklearn.preprocessing.MinMaxScaler
