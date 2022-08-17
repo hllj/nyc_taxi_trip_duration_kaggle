@@ -1,7 +1,8 @@
 defaults:
   - process: baseline
-  - model: xgboost
+  - model: baseline
   - model_select: tree
+  - tune: xgboost
 
 submission_folder: 'submissons'
 print_config: True

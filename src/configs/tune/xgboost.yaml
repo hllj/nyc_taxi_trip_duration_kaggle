@@ -1,0 +1,13 @@
+name: 'tree_baseline'
+target_column : 'trip_duration'
+categorical_column : ['vendor_id', 'store_and_fwd_flag', 'day_of_week', 'hour_of_day', 'month']
+numerical_column : ['passenger_count', 'distance']
+
+n_trials: 5
+
+model:
+  _target_: xgboost.XGBRegressor
+
+encoding: False
+scaler:
+  _target_: sklearn.preprocessing.MinMaxScaler
