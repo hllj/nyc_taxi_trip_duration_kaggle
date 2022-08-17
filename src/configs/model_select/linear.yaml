@@ -10,7 +10,6 @@ names: [
   'Lasso_Regression',
   'LassoCV_Regression',
   'LinearSVR',
-  'NuSVR',
   'SVR'
 ]
 models: [
@@ -21,7 +20,6 @@ models: [
   sklearn.linear_model.Lasso,
   sklearn.linear_model.LassoCV,
   sklearn.svm.LinearSVR,
-  sklearn.svm.NuSVR,
   sklearn.svm.SVR
 ]
 encoding: True

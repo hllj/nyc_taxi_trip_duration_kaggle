@@ -1,0 +1,7 @@
+,Model,Error
+0,DecisionTree_Regression,0.09756211908075876
+1,RandomForest_Regression,0.07326107943148205
+2,GradientBoosting_Regression,0.0749521640131969
+3,AdaBoost_Regression,0.11855705316368637
+4,LightGBM_Regression,0.0687700800525125
+5,XGBoost_Regression,0.06832215104218567
