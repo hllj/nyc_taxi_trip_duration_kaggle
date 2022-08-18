@@ -1,5 +1,6 @@
 import logging
 import hydra
+from hydra.core.hydra_config import HydraConfig
 from omegaconf import DictConfig
 import pandas as pd
 from sklearn.model_selection import train_test_split
@@ -42,9 +43,9 @@ def main(cfg : DictConfig) -> None:
     
     Y_test_pred = get_pred(X_test, model)
     test_data_path = cfg['process']['raw_test']
-    submisson_folder = cfg['submission_folder']
     submission_name = f"{cfg['model']['name']}_{type(model).__name__}"
-    create_submission(Y_test_pred, submission_name, test_data_path, submisson_folder)
+    output_dir = HydraConfig.get().runtime.output_dir
+    create_submission(output_dir, Y_test_pred, submission_name, test_data_path, output_dir)
     log.info(f"Create submission {submission_name}")
 
 

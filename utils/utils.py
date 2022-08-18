@@ -18,7 +18,7 @@ def haversine(lat1, lon1, lat2, lon2):
     # apply formulae
     a = (pow(math.sin(dLat / 2), 2) +
          pow(math.sin(dLon / 2), 2) *
-             math.cos(lat1) * math.cos(lat2));
+             math.cos(lat1) * math.cos(lat2))
     rad = 6371
     c = 2 * math.asin(math.sqrt(a))
     return rad * c
@@ -30,8 +30,9 @@ def one_hot_encoding(df, categorical_column):
         df.drop(column, axis=1)
     return df
 
-def create_submission(Y_test_pred, submission_name, test_data_path, submisson_folder):
+def create_submission(output_dir, Y_test_pred, submission_name, test_data_path):
     submission_df = pd.read_csv(test_data_path)
     submission_df['trip_duration'] = Y_test_pred.tolist()
     submission_df = submission_df[['id', 'trip_duration']]
-    submission_df.to_csv(os.path.join(submisson_folder, submission_name + '.csv'), index=False)
+    os.makedirs(output_dir, 'submisson')
+    submission_df.to_csv(os.path.join(output_dir, 'submisson', submission_name + '.csv'), index=False)

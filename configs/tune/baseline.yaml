@@ -1,11 +1,13 @@
-name: 'tree_baseline'
+name: 'baseline'
 target_column : 'trip_duration'
 categorical_column : ['vendor_id', 'store_and_fwd_flag', 'day_of_week', 'hour_of_day', 'month']
 numerical_column : ['passenger_count', 'distance']
 
-model:
-  _target_: lightgbm.LGBMRegressor
+n_trials: 5
 
-encoding: False
+model: sklearn.linear_model.LinearRegression
+
+
+encoding: True
 scaler:
   _target_: sklearn.preprocessing.MinMaxScaler

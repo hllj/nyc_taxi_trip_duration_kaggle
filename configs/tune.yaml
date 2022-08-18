@@ -1,0 +1,14 @@
+defaults:
+  - tune: baseline
+  - process: baseline
+
+cv:
+  _target_: sklearn.model_selection.KFold
+  n_splits: 5
+  shuffle: True
+  random_state: 34
+
+print_config: True
+hydra:
+  run:
+    dir: outputs/${hydra.job.name}/${tune.name}/${now:%Y-%m-%d_%H-%M-%S}

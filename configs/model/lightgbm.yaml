@@ -1,17 +1,11 @@
 name: 'tree_baseline'
+version: 0
 target_column : 'trip_duration'
 categorical_column : ['vendor_id', 'store_and_fwd_flag', 'day_of_week', 'hour_of_day', 'month']
 numerical_column : ['passenger_count', 'distance']
 
-n_trials: 100
-
-model: xgboost.XGBRegressor
-
-cv:
-  _target_: sklearn.model_selection.KFold
-  n_splits: 5
-  shuffle: True
-  random_state: 34
+model:
+  _target_: lightgbm.LGBMRegressor
 
 encoding: False
 scaler:
