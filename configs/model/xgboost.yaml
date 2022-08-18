@@ -1,4 +1,4 @@
-name: 'tree_baseline'
+name: 'xgboost'
 version: 1
 target_column : 'trip_duration'
 categorical_column : ['vendor_id', 'store_and_fwd_flag', 'day_of_week', 'hour_of_day', 'month']

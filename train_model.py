@@ -45,7 +45,7 @@ def main(cfg : DictConfig) -> None:
     test_data_path = cfg['process']['raw_test']
     submission_name = f"{cfg['model']['name']}_{type(model).__name__}"
     output_dir = HydraConfig.get().runtime.output_dir
-    create_submission(output_dir, Y_test_pred, submission_name, test_data_path, output_dir)
+    create_submission(output_dir, Y_test_pred, submission_name, test_data_path)
     log.info(f"Create submission {submission_name}")
 
 

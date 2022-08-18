@@ -34,5 +34,5 @@ def create_submission(output_dir, Y_test_pred, submission_name, test_data_path):
     submission_df = pd.read_csv(test_data_path)
     submission_df['trip_duration'] = Y_test_pred.tolist()
     submission_df = submission_df[['id', 'trip_duration']]
-    os.makedirs(output_dir, 'submisson')
+    os.makedirs(os.path.join(output_dir, 'submisson'))
     submission_df.to_csv(os.path.join(output_dir, 'submisson', submission_name + '.csv'), index=False)
