@@ -6,14 +6,14 @@ numerical_column : ['passenger_count', 'distance']
 
 model:
   _target_: xgboost.XGBRegressor
-  lambda: 0.006133522938531546
-  alpha: 4.897478509872067
-  colsample_bytree: 0.7
+  lambda: 0.33021409499906385
+  alpha: 0.00140541253048504
+  colsample_bytree: 0.6
   subsample: 1.0
-  learning_rate: 0.008
+  learning_rate: 0.02
   n_estimators: 3000
-  max_depth: 7
-  min_child_weight: 209
+  max_depth: 5
+  min_child_weight: 34
 
 encoding: False
 scaler:

@@ -1,4 +1,5 @@
 import logging
+import os
 import pandas as pd
 import numpy as np
 from omegaconf import DictConfig, OmegaConf
@@ -9,12 +10,20 @@ from utils.utils import haversine
 log = logging.getLogger(__name__)
 
 def clean_data(df_train, df_test):
-    df_train.drop('id',inplace=True,axis=1)
-    df_train.drop('dropoff_datetime',inplace=True,axis=1)
-    df_test.drop('id',inplace=True,axis=1)
+    df_train.drop('id', inplace=True,axis=1)
+    df_train.drop('dropoff_datetime', inplace=True,axis=1)
+    df_test.drop('id', inplace=True,axis=1)
+
+    #Drop outliers
+    df_train = df_train[(df_train.trip_duration < 1000000)]
+    df_train = df_train[df_train['pickup_longitude'].between(-75, -73)]
+    df_train = df_train[df_train['pickup_latitude'].between(40, 42)]
+    df_train = df_train[df_train['dropoff_longitude'].between(-75, -73)]
+    df_train = df_train[df_train['dropoff_latitude'].between(40, 42)]
+
     return df_train, df_test
     
-def transform(df_train, df_test):
+def transform_target(df_train, df_test):
     df_train['trip_duration'] = np.log(df_train['trip_duration'] + 1)
     return df_train, df_test
 
@@ -61,6 +70,8 @@ def read_raw_data(cfg):
     return df_train, df_test
 
 def save_process_data(cfg, df_train, df_test):
+    if not os.path.exists(cfg['process']['output_folder']):
+        os.makedirs(cfg['process']['output_folder'])
     df_train.to_csv(cfg['process']['output_process_train'], index=False)
     df_test.to_csv(cfg['process']['output_process_test'], index=False) 
 
@@ -70,8 +81,8 @@ def process_data(cfg : DictConfig) -> None:
     log.info("Read raw data")
     df_train, df_test = clean_data(df_train, df_test)
     log.info("Clean data")
-    df_train, df_test = transform(df_train, df_test)
-    log.info("Transform Data")
+    df_train, df_test = transform_target(df_train, df_test)
+    log.info("Transform Target Variable")
     df_train, df_test = feature_engineer(df_train, df_test)
     log.info("Feature Engineer")
     save_process_data(cfg, df_train, df_test)

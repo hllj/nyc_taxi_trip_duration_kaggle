@@ -3,7 +3,7 @@ target_column : 'trip_duration'
 categorical_column : ['vendor_id', 'store_and_fwd_flag', 'day_of_week', 'hour_of_day', 'month']
 numerical_column : ['passenger_count', 'distance']
 
-n_trials: 100
+n_trials: 300
 
 model: xgboost.XGBRegressor
 

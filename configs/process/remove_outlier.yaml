@@ -1,0 +1,7 @@
+raw_train: 'dataset/raw/train.csv'
+raw_test: 'dataset/raw/test.csv'
+
+output_folder: 'dataset/remove_outlier'
+
+output_process_train: 'dataset/remove_outlier/train.csv'
+output_process_test: 'dataset/remove_outlier/test.csv'
